@@ -11,7 +11,7 @@ app.post('/zoom-webhook', async (req, res) => {
   const { event, payload } = req.body;
 
   if (event === 'meeting.ended') {
-    const slackWebhookUrl = 'https://hooks.slack.com/services/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';
+    const slackWebhookUrl = 'https://hooks.slack.com/services/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';
     const slackMessage = `Zoom meeting ended: ${payload.topic}`;
 
     try {
