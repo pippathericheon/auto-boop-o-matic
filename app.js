@@ -20,9 +20,14 @@ app.post("/zoom-webhook", async (req, res) => {
       console.log("Slack message sent successfully");
       res.status(201).send("OK");
     } catch (error) {
-      console.log(error);
-      console.error("Error sending Slack message:", error.message);
-      res.status(400).send('There be a problem');
+      const { data, status, headers, response } = error;
+      res.status(400).send({
+        msg: "There be a problem",
+        status,
+        headers,
+        data,
+        response,
+      });
     }
   }
 });
