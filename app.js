@@ -18,9 +18,9 @@ app.post("/zoom-webhook", async (req, res) => {
     await axios.post(slackWebhookUrl, { text: slackMessage });
     res.status(201).send("OK");
   } catch (error) {
+    console.log(error);
     res.status(400).send({
       msg: "There be a problem",
-      error: error,
     });
   }
 });
