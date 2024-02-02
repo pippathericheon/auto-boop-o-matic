@@ -19,8 +19,10 @@ app.post("/zoom-webhook", async (req, res) => {
     res.status(201).send("OK");
   } catch (error) {
     console.log(error);
-    res.status(400).send({
+    res.status(error.response.status).send({
       msg: "There be a problem",
+      statusText: error.response.statusText,
+      data: error.response.data,
     });
   }
 });
