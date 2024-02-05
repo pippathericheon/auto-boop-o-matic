@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const axios = require("axios");
+const { postSlackMessage } = require("./api");
 
 const app = express();
 const port = 3000;
@@ -8,21 +8,13 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.post("/zoom-webhook", async (req, res) => {
-  const { payload } = req.body;
-
-  const slackWebhookUrl =
-    "https://hooks.slack.com/services/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";
-  const slackMessage = `Zoom meeting ended: ${payload.topic}`;
-
+  const { payload, event } = req.body;
   try {
-    await axios.post(slackWebhookUrl, { text: slackMessage });
+    await postSlackMessage("Is this working?")
     res.status(201).send("OK");
   } catch (error) {
-    console.log(error);
     res.status(error.response.status).send({
       msg: "There be a problem",
-      statusText: error.response.statusText,
-      data: error.response.data,
     });
   }
 });
