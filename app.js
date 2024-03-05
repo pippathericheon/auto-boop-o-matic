@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.post("/zoom-webhook", async (req, res) => {
   const { payload, event } = req.body;
   try {
-    await postSlackMessage("Is this working?")
+    await postSlackMessage("testing 1 2 3")
     res.status(200).send("OK");
   } catch (error) {
     res.status(error.response.status).send({
