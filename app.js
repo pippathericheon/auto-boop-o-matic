@@ -11,23 +11,23 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.post("/zoom-webhook", async (req, res) => {
-  if (req.body.event === "endpoint.url_validation") {
-    console.log("validating....");
-    const hashForValidate = crypto
-      .createHmac("sha256", process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
-      .update(req.body.payload.plainToken)
-      .digest("hex");
+  // if (req.body.event === "endpoint.url_validation") {
+  //   console.log("validating....");
+  //   const hashForValidate = crypto
+  //     .createHmac("sha256", process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
+  //     .update(req.body.payload.plainToken)
+  //     .digest("hex");
 
-    res.status(200);
-    const responseObj = {
-      plainToken: req.body.payload.plainToken,
-      encryptedToken: hashForValidate,
-    };
-    res.json(responseObj);
-  } else {
+  //   res.status(200);
+  //   const responseObj = {
+  //     plainToken: req.body.payload.plainToken,
+  //     encryptedToken: hashForValidate,
+  //   };
+  //   res.json(responseObj);
+  // } else {
     const { payload, event } = req.body;
     try {
-      await postSlackMessage("A zoom meeting has ended");
+      await postSlackMessage("A new helpdesk has landed");
       res.status(200).send("OK");
     } catch (error) {
       res.status(error.response.status).send({
