@@ -10,6 +10,10 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
+app.get("/ping", async (req, res) => {
+  res.status(200).send({ msg: "the server is still alive" });
+});
+
 app.post("/zoom-webhook", async (req, res) => {
   // if (req.body.event === "endpoint.url_validation") {
   //   console.log("validating....");
