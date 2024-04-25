@@ -25,15 +25,16 @@ app.post("/zoom-webhook", async (req, res) => {
   //   };
   //   res.json(responseObj);
   // } else {
-    const { payload, event } = req.body;
-    try {
-      await postSlackMessage("A new helpdesk has landed (Rich im repurposing this for an app that checks for new helpdesks)");
-      res.status(200).send("OK");
-    } catch (error) {
-      res.status(error.response.status).send({
-        msg: "There be a problem",
-      });
-    }
+  const { payload, event } = req.body;
+  try {
+    await postSlackMessage(
+      "A new helpdesk has landed (Rich im repurposing this for an app that checks for new helpdesks)"
+    );
+    res.status(200).send("OK");
+  } catch (error) {
+    res.status(error.response.status).send({
+      msg: "There be a problem",
+    });
   }
 });
 
