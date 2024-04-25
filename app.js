@@ -27,7 +27,7 @@ app.post("/zoom-webhook", async (req, res) => {
   // } else {
     const { payload, event } = req.body;
     try {
-      await postSlackMessage("A new helpdesk has landed");
+      await postSlackMessage("A new helpdesk has landed (Rich im repurposing this for an app that checks for new helpdesks)");
       res.status(200).send("OK");
     } catch (error) {
       res.status(error.response.status).send({
